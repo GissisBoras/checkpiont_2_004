@@ -9,27 +9,30 @@ namespace checkpiont_2_004
     internal class Program
     {
         static List<Inventory> inventoryProducts = new List<Inventory>(); // Lista som lagrar produkter i Inventory
-
+        public static double totalSumma = 0;
         static void Main() //(string[] args)
         {
             //välj om ett inventory ska läggas till eller programmet avslutas
             //Lägg till information i inventory
+            
 
             SkrivUtMeny();
 
             while (true)
             {
-               //Gör ett val 
-               // 1 välj om användaren skall avsluta eller lägga in ett nytt lagerobjekt
-               // (q) avslutar
-               // (n) lägger till
-               // (v) visa listan
-               // (s) spara listan på fil. Får det inte att funka just nu så har kommenterat bort den delen
-               // sedan kan användaren stara om från början
+                // Gör ett val 
+                // välj om användaren skall avsluta eller lägga in ett nytt lagerobjekt
+                // (q) avslutar
+                // (n) lägger till
+                // (v) visa listan
+                // (p) visa totalt pris //sepparat först 
+                // (s) spara listan på fil. Får det inte att funka just nu så har kommenterat bort den delen
+                // sedan startar användaren om från början
+
                 
+
                 Console.WriteLine("make a selection: ");
-                Console.Write("Lägg till produkt (n), visa listan (v) eller avsluta (q): ");
-                // Console.Write("Lägg till produkt (n), visa listan (v), spara listan på fil(s) eller avsluta (q): ");
+                Console.Write("Lägg till produkt (n), visa listan (v), Visa Totalt pris (p) eller avsluta (q): ");
 
                 string selection = Console.ReadLine();
                 selection = selection.ToLower().Trim();
@@ -41,7 +44,6 @@ namespace checkpiont_2_004
                 }
                 else if (selection == "n") //ny
                 {
-
                     LaggTillProdukt();
                 }
                 else if (selection == "v") //visa
@@ -52,6 +54,12 @@ namespace checkpiont_2_004
                 //{
                 //    SparaTillFil();
                 //}
+
+                else if (selection == "p")
+                {
+                    BeraknaTotaltPris();
+
+                }
                 else
                     Console.Write("Gör ett nytt val");
 
@@ -111,6 +119,20 @@ namespace checkpiont_2_004
             }
         }
 
+        static void BeraknaTotaltPris()
+        // Calculate the total price for all inventoryp products
+        {
+            double summaKr = 0;
+            
+            foreach (var Inventory in inventoryProducts.OrderBy(inventoryProducts => inventoryProducts.Category))
+            {
+                summaKr = Inventory.Price;
+                totalSumma += summaKr;
+            }
+            Console.WriteLine("totalsumma " + totalSumma);
+            Console.Read(); 
+        }
+    
 
         //static void SparaTillFil(string InventoryList)
         ////lägg till InventoryListObjekt till en fil
