@@ -19,8 +19,18 @@ namespace checkpiont_2_004
 
             while (true)
             {
+               //Gör ett val 
+               // 1 välj om användaren skall avsluta eller lägga in ett nytt lagerobjekt
+               // (q) avslutar
+               // (n) lägger till
+               // (v) visa listan
+               // (s) spara listan på fil. Får det inte att funka just nu så har kommenterat bort den delen
+               // sedan kan användaren stara om från början
+                
                 Console.WriteLine("make a selection: ");
-                Console.Write("Lägg till produkt (n), visa listan (v), spara listan (s) eller avsluta (q): ");
+                Console.Write("Lägg till produkt (n), visa listan (v) eller avsluta (q): ");
+                // Console.Write("Lägg till produkt (n), visa listan (v), spara listan på fil(s) eller avsluta (q): ");
+
                 string selection = Console.ReadLine();
                 selection = selection.ToLower().Trim();
 
@@ -54,18 +64,19 @@ namespace checkpiont_2_004
         // =========
         static void SkrivUtMeny()
         {
+            // Skriver ut menyn
             Console.WriteLine("Add Inventorydata: ");
             Console.WriteLine("===================");
             Console.WriteLine();
             Console.WriteLine("Lägg till ny (n)");
             Console.WriteLine("Visa listan (v)");
-            Console.WriteLine("Avsluta med quit (q)");
+            Console.WriteLine("Avsluta quit (q)");
             Console.WriteLine();
         }
 
         static void LaggTillProdukt()
         {
-            //Lägg till produkter och spara dem i listan Inventory
+            //Lägg till produkter och spara dem i listan InventoryProducts
 
             Console.Write("Lägg till en Category: ");
             string Category = Console.ReadLine();
@@ -73,13 +84,12 @@ namespace checkpiont_2_004
             Console.Write("Lägg till ett produktnamn: ");
             string Name = Console.ReadLine();
 
-            Console.WriteLine("Lägg till priset: ");
-            // float Price = Convert.ToSingle(Console.ReadLine()); // konverterar inmatat värde till Single (float) för att kunna lagra värdet i price variabeln
+            Console.Write("Lägg till priset: ");
+            
             double Price = Convert.ToDouble(Console.ReadLine());
 
             Inventory newInventory = new Inventory(Category, Name, Price);
 
-            //Inventory.Add(newInventory);
             inventoryProducts.Add(newInventory);
 
             Console.WriteLine("Product tillagd.");
@@ -88,21 +98,22 @@ namespace checkpiont_2_004
 
         static void SkrivUtLista()
         {
+            //Skriver ut listan Inentory
+            
             Console.WriteLine("Sparad lista");
             Console.WriteLine("============");
             Console.WriteLine();
-            //static List<Inventory> inventoryProducts = new List<Inventory>();
-
-            foreach (var Inventory in inventoryProducts.OrderBy(inventoryProducts => Inventory.Category)) 
-                                    //inventoryProducts.OrderBy(inventoryProducts => Inventory.Category))
+           
+           
+            foreach (var Inventory in inventoryProducts.OrderBy(inventoryProducts => inventoryProducts.Category)) 
             {
-                Console.WriteLine($"inventory.Category");
-                //static List<Inventory> inventoryProducts = new List<Inventory>(); //
+                Console.WriteLine($"{Inventory.Category} : {Inventory.Name} : {Inventory.Price}");
             }
         }
 
-        ////lägg till objekt till en fil
+
         //static void SparaTillFil(string InventoryList)
+        ////lägg till InventoryListObjekt till en fil
         //{
 
         //    InventoryList IL = new InventoryList(InventoryFil);
