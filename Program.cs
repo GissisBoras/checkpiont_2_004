@@ -10,7 +10,7 @@ namespace checkpiont_2_004
     {
         static List<Inventory> inventoryProducts = new List<Inventory>(); // Lista som lagrar produkter i Inventory
         public static double totalSumma = 0;
-        static void Main() //(string[] args)
+        static void Main() 
         {
             //välj om ett inventory ska läggas till eller programmet avslutas
             //Lägg till information i inventory
@@ -92,7 +92,7 @@ namespace checkpiont_2_004
             Console.Write("Lägg till ett produktnamn: ");
             string Name = Console.ReadLine();
 
-            Console.Write("Lägg till priset: ");
+            Console.Write("Lägg till priset (måste vara , sepparerat tex 55,99 saknar try and catch nu): ");
             
             double Price = Convert.ToDouble(Console.ReadLine());
 
